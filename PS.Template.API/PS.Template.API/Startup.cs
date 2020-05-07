@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,8 +15,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PS.Template.AccessData;
 using PS.Template.AccessData.Commands;
+using PS.Template.AccessData.Queries;
 using PS.Template.Application.Services;
 using PS.Templete.Domain.Commands;
+using PS.Templete.Domain.Queries;
+using SqlKata.Compilers;
 
 namespace PS.Template.API
 {
@@ -32,10 +37,21 @@ namespace PS.Template.API
         {
             services.AddControllers();
             var connectionString = Configuration.GetSection("ConnectionString").Value;
+            // EF Core
             services.AddDbContext<TemplateDbContext>(options => options.UseSqlServer(connectionString));
+            
+            // SQLKATA
+            services.AddTransient<Compiler, SqlServerCompiler>();
+            services.AddTransient<IDbConnection>(b =>
+            {
+                return new SqlConnection(connectionString);
+            });
+
 
             services.AddTransient<IGenericsRepository, GenericsRepository>();
             services.AddTransient<IAlumnoService, AlumnoService>();
+            services.AddTransient<ICursoServices, CursoServices>();
+            services.AddTransient<ICursoQuery, CursoQuery>();
 
 
         }
