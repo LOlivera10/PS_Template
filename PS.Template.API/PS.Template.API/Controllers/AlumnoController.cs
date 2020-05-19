@@ -21,9 +21,16 @@ namespace PS.Template.API.Controllers
         }
 
         [HttpPost]
-        public Alumno Post(AlumnoDto alumno)
+        public IActionResult Post(AlumnoDto alumno)
         {
-            return _service.CreateAlumno(alumno);
+            try
+            {
+                return new JsonResult(_service.CreateAlumno(alumno)) { StatusCode = 200 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
