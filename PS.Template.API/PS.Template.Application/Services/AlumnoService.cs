@@ -30,6 +30,7 @@ namespace PS.Template.Application.Services
                 Legajo = alumno.Legajo
             };
             _repository.Add<Alumno>(entity);
+            Console.WriteLine("creando alumno");
             Console.WriteLine("Creation");
             return entity;
         }
