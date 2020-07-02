@@ -52,6 +52,10 @@ namespace PS.Template.API
             services.AddTransient<IAlumnoService, AlumnoService>();
             services.AddTransient<ICursoServices, CursoServices>();
             services.AddTransient<ICursoQuery, CursoQuery>();
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
 
 
         }
@@ -67,7 +71,7 @@ namespace PS.Template.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

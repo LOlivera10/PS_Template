@@ -32,6 +32,18 @@ namespace PS.Template.API.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet("{Id?}")]
+        public IActionResult GetCursoById(string Id, [FromQuery] string apellido)
+        {
+            try
+            {
+                return new JsonResult(_service.GetById(Id)) { StatusCode = 200 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
         [HttpGet]
         public IActionResult GetCursos([FromQuery] string apellido)
@@ -45,18 +57,7 @@ namespace PS.Template.API.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpGet("{Id}")]
-        public IActionResult GetCursoById(string Id)
-        {
-            try
-            {
-                return new JsonResult(_service.GetById(Id)) { StatusCode = 200 };
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+
 
     }
 }
