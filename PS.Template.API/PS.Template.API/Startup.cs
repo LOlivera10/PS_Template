@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +18,7 @@ using PS.Template.AccessData;
 using PS.Template.AccessData.Commands;
 using PS.Template.AccessData.Queries;
 using PS.Template.Application.Services;
+using PS.Template.Authentication;
 using PS.Templete.Domain.Commands;
 using PS.Templete.Domain.Queries;
 using SqlKata.Compilers;
@@ -53,7 +55,8 @@ namespace PS.Template.API
             services.AddTransient<ICursoServices, CursoServices>();
             services.AddTransient<ICursoQuery, CursoQuery>();
 
-
+            services.AddFirebaseAuthentication(Configuration);
+            services.AddBaererAuthentication(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Templete.Domain", "PS.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Template.AccessData", "PS.Template.AccessData\PS.Template.AccessData.csproj", "{9B9ED263-EBAE-469D-BA2B-CEFFD17F0C17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Template.ApplicationTest", "PS.Template.ApplicationTest\PS.Template.ApplicationTest.csproj", "{F94A82E6-D377-45E6-B805-F1A80CDD59D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Template.ApplicationTest", "PS.Template.ApplicationTest\PS.Template.ApplicationTest.csproj", "{F94A82E6-D377-45E6-B805-F1A80CDD59D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Template.Authentication", "PS.Template.Authentication\PS.Template.Authentication.csproj", "{1640B7A8-A9AD-41C4-B36C-889DA541B2C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F94A82E6-D377-45E6-B805-F1A80CDD59D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F94A82E6-D377-45E6-B805-F1A80CDD59D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F94A82E6-D377-45E6-B805-F1A80CDD59D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1640B7A8-A9AD-41C4-B36C-889DA541B2C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1640B7A8-A9AD-41C4-B36C-889DA541B2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1640B7A8-A9AD-41C4-B36C-889DA541B2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1640B7A8-A9AD-41C4-B36C-889DA541B2C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
