@@ -25,18 +25,33 @@ namespace PS.Template.Authentication
                         ValidAudience = "pstemplate",
                         ValidateLifetime = true
                     };
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                                Encoding.ASCII.GetBytes(configuration.GetSection("Authentication:SecretKey").Value)),
+                        ValidateIssuer = false,
+                        ValidateLifetime = true,
+                        ValidateAudience = false
+                    };
                 });
             return services;
         }
-        public static IServiceCollection AddBaererAuthentication(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddJWTAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            var key = Encoding.ASCII.GetBytes("121651651asd1as1da");
-            services
-                .AddAuthentication(x =>
+            //Configuratio Authentication
+            var key = Encoding.ASCII.GetBytes(configuration.GetSection("Authentication:SecretKey").Value);
+            services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(x =>
+            })
+            .AddJwtBearer(x =>
             {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
@@ -45,6 +60,7 @@ namespace PS.Template.Authentication
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
+                    ValidateLifetime = true,
                     ValidateAudience = false
                 };
             });
