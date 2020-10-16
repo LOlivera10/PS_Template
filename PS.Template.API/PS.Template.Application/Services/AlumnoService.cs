@@ -1,9 +1,8 @@
-﻿using PS.Templete.Domain.Commands;
+﻿using Microsoft.Extensions.Configuration;
+using PS.Templete.Domain.Commands;
 using PS.Templete.Domain.DTOs;
 using PS.Templete.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PS.Template.Application.Services
 {
@@ -14,13 +13,16 @@ namespace PS.Template.Application.Services
     public class AlumnoService : IAlumnoService
     {
         private readonly IGenericsRepository _repository;
-        public AlumnoService(IGenericsRepository repository)
+        private readonly IConfiguration _configuration;
+        public AlumnoService(IGenericsRepository repository, IConfiguration configuration)
         {
             _repository = repository;
+            _configuration = configuration;
         }
 
         public Alumno CreateAlumno(AlumnoDto alumno)
         {
+            _configuration.GetSection("URL").Value;
             var entity = new Alumno
             {
                 AlumnoId = Guid.NewGuid(),

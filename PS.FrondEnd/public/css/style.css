@@ -1,0 +1,23 @@
+* {
+    margin: 10px;
+}
+p{
+    margin: 30px;
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+label{
+    font-weight: bold;
+}
+label span{
+    font-weight: normal;
+}
+.divtable{
+    background-color: springgreen;
+}
+#imgheader{
+    width: 10%;
+}
+.form-group{
+    background-color: gray;
+}

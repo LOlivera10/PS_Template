@@ -5,8 +5,6 @@ using PS.Templete.Domain.Commands;
 using PS.Templete.Domain.DTOs;
 using PS.Templete.Domain.Queries;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PS.Template.ApplicationTest
 {
@@ -32,7 +30,7 @@ namespace PS.Template.ApplicationTest
             // assert
             Assert.AreEqual(respuestaEsperada, result);
         }
-        
+
 
     }
 }

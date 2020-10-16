@@ -20,7 +20,7 @@ namespace PS.Template.ApplicationTest
 
             // Act
             var result = util.ValidarFormatoCursoId(cursoIdInvalid);
-            
+
             // Assert
             Assert.IsFalse(result);
         }

@@ -1,14 +1,14 @@
 ﻿using PS.Templete.Domain.Commands;
-using System;
+using PS.Templete.Domain.DTOs;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace PS.Template.AccessData.Commands
 {
     public class GenericsRepository : IGenericsRepository
     {
         private readonly TemplateDbContext _context;
-        public GenericsRepository (TemplateDbContext dbContext)
+        public GenericsRepository(TemplateDbContext dbContext)
         {
             _context = dbContext;
         }
@@ -18,7 +18,23 @@ namespace PS.Template.AccessData.Commands
             _context.Add(entity);
             _context.SaveChanges();
         }
+
+        public ResponseGetCursoById GetByIdCurso(string id)
+        {
+            var lista = new List<ResponseGetCursoById>() { new ResponseGetCursoById() };
+            var lista2 = new List<ResponseGetCursoById>() { new ResponseGetCursoById() };
+
+            lista.ForEach(x => { lista2.Add(x); });
+
+            return _context.Cursos
+                .Select(x => new ResponseGetCursoById
+                {
+                    CursoId = x.CursoId
+                })
+                .FirstOrDefault();
+
+        }
     }
 
-   
+
 }

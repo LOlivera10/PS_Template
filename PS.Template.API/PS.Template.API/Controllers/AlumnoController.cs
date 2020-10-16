@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PS.Template.Application.Services;
 using PS.Templete.Domain.DTOs;
 using PS.Templete.Domain.Entities;
+using System;
 
 namespace PS.Template.API.Controllers
 {
@@ -21,11 +18,12 @@ namespace PS.Template.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Alumno), StatusCodes.Status201Created)]
         public IActionResult Post(AlumnoDto alumno)
         {
             try
             {
-                return new JsonResult(_service.CreateAlumno(alumno)) { StatusCode = 200 };
+                return new JsonResult(_service.CreateAlumno(alumno)) { StatusCode = 201 };
             }
             catch (Exception e)
             {

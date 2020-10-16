@@ -1,23 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
+using Microsoft.OpenApi.Models;
 using PS.Template.AccessData;
 using PS.Template.AccessData.Commands;
 using PS.Template.AccessData.Queries;
@@ -26,6 +14,7 @@ using PS.Template.Authentication;
 using PS.Templete.Domain.Commands;
 using PS.Templete.Domain.Queries;
 using SqlKata.Compilers;
+using System.Data;
 
 namespace PS.Template.API
 {
@@ -45,7 +34,7 @@ namespace PS.Template.API
             var connectionString = Configuration.GetSection("ConnectionString").Value;
             // EF Core
             services.AddDbContext<TemplateDbContext>(options => options.UseSqlServer(connectionString));
-            
+
             // SQLKATA
             services.AddTransient<Compiler, SqlServerCompiler>();
             services.AddTransient<IDbConnection>(b =>
@@ -58,12 +47,20 @@ namespace PS.Template.API
             services.AddTransient<IAlumnoService, AlumnoService>();
             services.AddTransient<ICursoServices, CursoServices>();
             services.AddTransient<ICursoQuery, CursoQuery>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "PS_Template APIs v1.0",
+                    Description = "Test services"
+                });
+            });
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
-
-            //services.AddFirebaseAuthentication(Configuration);
             services.AddJWTAuthentication(Configuration);
         }
 
@@ -76,7 +73,11 @@ namespace PS.Template.API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("../swagger/v1/swagger.json", "MyAPI V1");
+            });
             app.UseRouting();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();

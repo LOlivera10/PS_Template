@@ -4,7 +4,6 @@ using PS.Templete.Domain.Entities;
 using PS.Templete.Domain.Queries;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PS.Template.Application.Services
 {
@@ -32,14 +31,13 @@ namespace PS.Template.Application.Services
 
         public ResponseGetCursoById GetById(string cursoId)
         {
-
             return _query.GetById(cursoId);
         }
 
         public List<ResponseGetAllCursoDto> GetCursos(string apellido)
         {
 
-           return  _query.GetAllCursos(apellido);
+            return _query.GetAllCursos(apellido);
         }
     }
     public interface ICursoServices

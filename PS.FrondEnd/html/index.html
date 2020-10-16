@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Software ejemplo clase web</title>
+    <link rel="stylesheet" href="css/style.css" />
+    
+</head>
+<body>
+    <header>
+        <img id="imgheader"src="img/UNAJ.jpg"/>
+        <h1>Proyecto Software</h1>
+        <h3>Ejemplo Clase web</h3>
+    </header>
+    <main>
+        <div>
+            <h2>Listados de cursos</h2>
+            <p>En esta página vamos a mostrar el listado de los cursos</p>
+        </div>
+        <div>
+            <label>Buscar Curso</label>
+            <span>por id:</span>
+            <input id="inputCurso"type="text"/>
+            <button id="buscar">Buscar</button>
+        </div>
+        <section>
+            <div class="divtable"> 
+                <div id="CursoInfo"></div>
+                <table id="TableCursoInfo">
+                    <tr>
+                        <th>AlumnoId</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Legajo</th>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script type="module" src="js/Constant.js"></script>
+    <script type="module" src="js/CursoService.js"></script>
+    <script type="module" src="js/index.js"></script>
+</body>
+</html>

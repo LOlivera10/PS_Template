@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PS.Template.Application.Services;
 using PS.Templete.Domain.DTOs;
-using PS.Templete.Domain.Queries;
+using System;
+using System.Collections.Generic;
 
 namespace PS.Template.API.Controllers
-{ 
+{
     [Authorize()]
     [Route("api/[controller]")]
     [ApiController]
@@ -23,19 +20,21 @@ namespace PS.Template.API.Controllers
         }
 
         [HttpPost()]
+        [ProducesResponseType(typeof(GenericCreatedResponseDto), StatusCodes.Status201Created)]
         public IActionResult Post(CreateCursoRequestDto curso)
         {
             try
             {
                 return new JsonResult(_service.CreateCurso(curso)) { StatusCode = 201 };
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
-        [HttpGet("{Id?}")]
-        public IActionResult GetCursoById(string Id, [FromQuery] string apellido)
+        [HttpGet("{Id}")]
+        [ProducesResponseType(typeof(ResponseGetCursoById), StatusCodes.Status200OK)]
+        public IActionResult GetCursoById(string Id)
         {
             try
             {
@@ -48,6 +47,7 @@ namespace PS.Template.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<ResponseGetAllCursoDto>), StatusCodes.Status200OK)]
         public IActionResult GetCursos([FromQuery] string apellido)
         {
             try

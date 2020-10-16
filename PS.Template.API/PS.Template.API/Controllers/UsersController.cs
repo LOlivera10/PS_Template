@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FireSharp;
+﻿using FireSharp;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace PS.Template.API.Controllers
 {
@@ -16,7 +11,7 @@ namespace PS.Template.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        IFirebaseConfig config = new FirebaseConfig
+        readonly IFirebaseConfig config = new FirebaseConfig
         {
             AuthSecret = "3XM6dzdfCzvz8IFpiz9FFyJVgnc262wfIfQnZ6qM",
             BasePath = "https://pstemplate.firebaseio.com/Users"

@@ -5,7 +5,7 @@ namespace PS.Templete.Domain.Queries
 {
     public interface ICursoQuery
     {
-        List<ResponseGetAllCursoDto> GetAllCursos(string apellido); 
-        ResponseGetCursoById GetById(string cursoId); 
+        List<ResponseGetAllCursoDto> GetAllCursos(string apellido);
+        ResponseGetCursoById GetById(string cursoId);
     }
 }
