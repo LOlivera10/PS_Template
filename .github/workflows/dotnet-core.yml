@@ -18,6 +18,10 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Build
-      run: dotnet build PS_Template/PS.Template.API/PS.Template.API/PS.Template.API.csproj
+      run:  |
+        cd ./PS_Template/PS.Template.API/PS.Template.API/
+        dotnet build PS.Template.API.csproj
     - name: Test
-      run: dotnet test PS_Template/PS.Template.API/PS.Template.ApplicationTest/PS.Template.ApplicationTest.csproj
+      run:  |
+        cd ./PS_Template/PS.Template.API/PS.Template.ApplicationTest/ 
+        dotnet test PS.Template.ApplicationTest.csproj
