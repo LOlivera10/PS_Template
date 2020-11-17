@@ -17,9 +17,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-    - name: Install dependencies
-      run: dotnet restore
     - name: Build
-      run: dotnet build 
+      run:  |
+        echo $PATH
+        echo ls
+        cd ./PS_Template/PS.Template.API/PS.Template.API/
+        dotnet build PS.Template.API.csproj
     - name: Test
-      run: dotnet test 
+      run:  |
+        cd ./PS_Template/PS.Template.API/PS.Template.ApplicationTest/ 
+        dotnet test PS.Template.ApplicationTest.csproj
