@@ -19,6 +19,8 @@ jobs:
         dotnet-version: 3.1.301
     - name: Build
       run:  |
+        echo $PATH
+        echo ls
         cd ./PS_Template/PS.Template.API/PS.Template.API/
         dotnet build PS.Template.API.csproj
     - name: Test
