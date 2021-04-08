@@ -13,16 +13,13 @@ namespace PS.Template.Application.Services
     public class AlumnoService : IAlumnoService
     {
         private readonly IGenericsRepository _repository;
-        private readonly IConfiguration _configuration;
-        public AlumnoService(IGenericsRepository repository, IConfiguration configuration)
+        public AlumnoService(IGenericsRepository repository)
         {
             _repository = repository;
-            _configuration = configuration;
         }
 
         public Alumno CreateAlumno(AlumnoDto alumno)
         {
-            _configuration.GetSection("URL").Value;
             var entity = new Alumno
             {
                 AlumnoId = Guid.NewGuid(),

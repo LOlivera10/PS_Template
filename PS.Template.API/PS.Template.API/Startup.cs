@@ -14,6 +14,7 @@ using PS.Template.Authentication;
 using PS.Templete.Domain.Commands;
 using PS.Templete.Domain.Queries;
 using SqlKata.Compilers;
+using System;
 using System.Data;
 
 namespace PS.Template.API
@@ -57,6 +58,7 @@ namespace PS.Template.API
                     Description = "Test services"
                 });
             });
+
             services.AddCors(c =>
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
@@ -71,7 +73,15 @@ namespace PS.Template.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            var services = app.ApplicationServices.CreateScope();
+            try
+            {
+            services.ServiceProvider.GetRequiredService<TemplateDbContext>().Database.Migrate();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("ErrorMigration");
+            }
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

@@ -31,7 +31,9 @@ namespace PS.Template.Application.Services
 
         public ResponseGetCursoById GetById(string cursoId)
         {
-            return _query.GetById(cursoId);
+            if(Guid.TryParse(cursoId, out Guid _))
+                return _query.GetById(cursoId);
+            return null;
         }
 
         public List<ResponseGetAllCursoDto> GetCursos(string apellido)

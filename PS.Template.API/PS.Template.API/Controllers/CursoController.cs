@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace PS.Template.API.Controllers
 {
-    [Authorize()]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class CursoController : ControllerBase
